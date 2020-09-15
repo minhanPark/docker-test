@@ -21,3 +21,16 @@ after_success:
   - docker push alsgks1218/docker-frontend
   - docker push alsgks1218/docker-backend
   - docker push alsgks1218/docker-nginx
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-test-app"
+  env: "DockerTestApp-env"
+  bucket_name: elasticbeanstalk-us-east-2-455213246709
+  bucket_path: "docker-test-app"
+  on:
+    branch: master
+
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
